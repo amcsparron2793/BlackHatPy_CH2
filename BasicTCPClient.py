@@ -11,7 +11,7 @@ client.connect((target_host, target_port))
 
 # send some data
 # client.send("GET / HTTP/1.1\r\nHost: google.com\r\n\r\n")
-client.send("ahhahahaha")
+client.send("HELLOOOO SERVER")
 # receive some data
 response = client.recv(4096)
 
