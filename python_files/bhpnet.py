@@ -1,3 +1,5 @@
+#!/bin/python2.7
+
 import sys
 import socket
 import getopt
@@ -39,27 +41,28 @@ def client_sender(buffer):
         if len(buffer):
             client.send(buffer)
 
-            while True:
-                # now wait for data back
-                recv_len = 1
-                response = ""
+        while True:
+            # now wait for data back
+            recv_len = 1
+            response = ""
 
-                while recv_len:
-                    data = client.recv(4096)
-                    recv_len = len(data)
-                    response += data
+            while recv_len:
+                data = client.recv(4096)
+                recv_len = len(data)
+                response += data
 
-                    if recv_len < 4096:
-                        break
-                print(response, )
+                if recv_len < 4096:
+                    break
+            print(response)
 
-                # wait for more input
-                buffer = raw_input("")
-                buffer += "\n"
+            # wait for more input
+            buffer = raw_input("")
+            buffer += "\n"
 
-                # send it off
-                client.send(buffer)
-    except Exception:
+            # send it off
+            client.send(buffer)
+    except Exception as e:
+        print(e)
         print("[*] Exception! Exiting.")
 
         # close the connection
